@@ -3,6 +3,7 @@
 
 #include <QtCore/qglobal.h>
 
+
 #if defined(EMERGENCYCENTRELIB_LIBRARY)
 #  define EMERGENCYCENTRELIB_EXPORT Q_DECL_EXPORT
 #else
