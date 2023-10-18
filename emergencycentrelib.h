@@ -7,6 +7,7 @@ class EMERGENCYCENTRELIB_EXPORT EmergencyCentreLib
 {
 public:
     EmergencyCentreLib();
+    void printer();
 };
 
 #endif // EMERGENCYCENTRELIB_H
