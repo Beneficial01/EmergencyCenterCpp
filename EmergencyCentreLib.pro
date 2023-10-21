@@ -11,12 +11,14 @@ CONFIG += c++17
 
 SOURCES += \
     emergencycentrelib.cpp \
-    librarytest.cpp
+    librarytest.cpp \
+    service.cpp
 
 HEADERS += \
     EmergencyCentreLib_global.h \
     emergencycentrelib.h \
-    librarytest.h
+    librarytest.h \
+    service.h
 
 # Default rules for deployment.
 unix {
