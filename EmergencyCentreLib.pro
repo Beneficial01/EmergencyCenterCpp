@@ -11,8 +11,7 @@ CONFIG += c++17
 
 SOURCES += \
     emergencycentrelib.cpp \
-    librarytest.cpp \
-    service.cpp
+    librarytest.cpp
 
 HEADERS += \
     EmergencyCentreLib_global.h \

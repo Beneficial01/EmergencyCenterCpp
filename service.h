@@ -6,7 +6,10 @@
 class EMERGENCYCENTRELIB_EXPORT Service
 {
 public:
-    Service();
+    Service() = default;
+    virtual ~Service() = default;
+    virtual void update() const = 0;
+
 };
 
 #endif // SERVICE_H
