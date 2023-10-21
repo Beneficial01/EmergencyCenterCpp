@@ -1,15 +1,15 @@
 #ifndef CONCRETESERVICE_H
 #define CONCRETESERVICE_H
 
-#include "service.h"
+//#include "service.h"
 #include <string>
+#include "EmergencyCentreLib_global.h"
+#include "service.h"
 
-
-class ConcreteService : Service
+class EMERGENCYCENTRELIB_EXPORT ConcreteService:  Service
 {
 public:
-    ConcreteService() = default;
-
+    ConcreteService();
     virtual void update() const override;
 
     void setText(const std::string &newText);

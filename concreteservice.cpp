@@ -3,6 +3,16 @@
 
 
 
+//void ConcreteService::update() const
+//{
+//    std::cout << text << std::endl;
+//}
+
+ConcreteService::ConcreteService()
+{
+    std::cout << "Creating a concrete service" << std::endl;
+}
+
 void ConcreteService::update() const
 {
     std::cout << text << std::endl;
