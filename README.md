@@ -3,7 +3,7 @@
 
 ## UML:
 
-    ![UML Emergency Center](UML_Emergency_Center.png)
+    ![UML Emergency Center](UML_Emergency_Center.jpg)
 
 ## Coding Conventions followed:
 
