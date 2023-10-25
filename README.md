@@ -2,8 +2,8 @@
 
 
 ## UML:
-
-    ![UML Emergency Center](UML_Emergency_Center.jpg)
+- The UML is as follows:
+    ![UML](UML_Emergency_Center.jpg)
 
 ## Coding Conventions followed:
 
