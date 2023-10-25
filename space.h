@@ -1,19 +1,18 @@
 #ifndef SPACE_H
 #define SPACE_H
-#ifndef SERVICE_H
-#define SERVICE_H
+
 
 #include "EmergencyCentreLib_global.h"
+#include <string>
 
-class EMERGENCYCENTRELIB_EXPORT Service
+class EMERGENCYCENTRELIB_EXPORT Space
 {
 public:
-    Service() = default;
-    virtual ~Service() = default;
-    virtual void update() const = 0;
-
+    Space() = default;
+    virtual ~Space() = default;
+    virtual std::string toString() const = 0;
+    virtual bool trigger() const = 0;
 };
 
-#endif // SERVICE_H
 
 #endif // SPACE_H
