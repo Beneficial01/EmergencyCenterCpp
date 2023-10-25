@@ -13,6 +13,8 @@ public:
     std::string toString() const override;
     bool trigger() const override;
 
+    void setSpaceName(const std::string &newSpaceName);
+
 private:
     std::vector<Space> subSpaces {};
     std::string spaceName;
