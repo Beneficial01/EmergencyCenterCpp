@@ -19,7 +19,8 @@ HEADERS += \
     concreteservice.h \
     emergencycentrelib.h \
     librarytest.h \
-    service.h
+    service.h \
+    space.h
 
 # Default rules for deployment.
 unix {
