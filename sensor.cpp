@@ -25,6 +25,11 @@ bool Sensor::trigger() const
 
 }
 
+std::string Sensor::toString() const
+{
+    return "Sensor Type: " + getSensorType() + ", Vendor: " + vendorName;
+}
+
 void Sensor::addService(std::shared_ptr<Service> service){
     services.push_back(service);
 }
@@ -40,5 +45,10 @@ void Sensor::generateId()
 {
     sensorId = nextId;
     nextId++;
+}
+
+std::string Sensor::getVendorName() const
+{
+    return vendorName;
 }
 

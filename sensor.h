@@ -13,18 +13,18 @@ public:
     virtual ~Sensor() = default;
     virtual void activate();
     virtual void deactivate();
-    virtual bool trigger() const;
-    virtual std::string toString() const;
+    virtual bool trigger() const override;
+    virtual std::string toString() const override;
+    virtual std::string getSensorType() const = 0;
+
 //    void addService(Service & service );
     void addService(std::shared_ptr<Service> service );
     int getSensorId() const;
+    std::string getVendorName() const;
 
 private:
     //attributes
     bool activated;
-    std::string vendorName;
-    int sensorId;
-    static int nextId;
     std::string startTime;
     std::string endTime;
     bool timerState;
@@ -34,8 +34,10 @@ private:
 
 protected:
     void generateId();
+    int sensorId;
+    std::string vendorName;
 };
+    static int nextId = 1;
 
-int Sensor::nextId = 1;
 
 #endif // SENSOR_H
