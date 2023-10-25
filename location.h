@@ -7,7 +7,7 @@
 #include <string>
 #include <memory>
 
-class EMERGENCYCENTRELIB_EXPORT Location: Space
+class EMERGENCYCENTRELIB_EXPORT Location: public Space
 {
 public:
     Location();

@@ -25,7 +25,7 @@ bool Location::trigger() const
 
     } else {
 
-        std::cout << spaceName << ": No sensors to trigger" << std::endl;
+        std::cout << spaceName << ": This space has no subspaces or sensors to trigger" << std::endl;
 
     }
 
