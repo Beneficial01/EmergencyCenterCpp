@@ -12,13 +12,15 @@ CONFIG += c++17
 SOURCES += \
     concreteservice.cpp \
     emergencycentrelib.cpp \
-    librarytest.cpp
+    librarytest.cpp \
+    sensor.cpp
 
 HEADERS += \
     EmergencyCentreLib_global.h \
     concreteservice.h \
     emergencycentrelib.h \
     librarytest.h \
+    sensor.h \
     service.h \
     space.h
 
