@@ -5,16 +5,40 @@
 //}
 
 
-void Sensor::addService(std::shared_ptr<Service> service)
+void Sensor::activate()
 {
+    activated = true;
+}
+
+void Sensor::deactivate()
+{
+    activated = false;
+}
+
+bool Sensor::trigger() const
+{
+
+    for(auto& service : services){
+        service->update();
+    }
+    return true;
+
+}
+
+void Sensor::addService(std::shared_ptr<Service> service){
     services.push_back(service);
 }
 
-int Sensor::generateId()
+int Sensor::getSensorId() const
 {
-    id = nextId;
-    nextId++;
+    return sensorId;
+}
 
-    return id;
+
+
+void Sensor::generateId()
+{
+    sensorId = nextId;
+    nextId++;
 }
 

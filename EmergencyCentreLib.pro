@@ -13,7 +13,8 @@ SOURCES += \
     concreteservice.cpp \
     emergencycentrelib.cpp \
     librarytest.cpp \
-    sensor.cpp
+    sensor.cpp \
+    smokesensor.cpp
 
 HEADERS += \
     EmergencyCentreLib_global.h \
@@ -22,6 +23,7 @@ HEADERS += \
     librarytest.h \
     sensor.h \
     service.h \
+    smokesensor.h \
     space.h
 
 # Default rules for deployment.
