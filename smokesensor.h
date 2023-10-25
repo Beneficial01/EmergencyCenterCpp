@@ -4,10 +4,13 @@
 #include "sensor.h"
 
 
+
 class EMERGENCYCENTRELIB_EXPORT SmokeSensor: Sensor
 {
 public:
     SmokeSensor();
+    SmokeSensor(std::string vendor);
+    std::string getSensorType() const override;
 
 };
 
