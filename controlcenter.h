@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <iostream>
 #include "space.h"
 //#include "sensor.h"
 #include "location.h"
@@ -51,10 +52,12 @@ public:
     std::vector<std::shared_ptr<Location>> getAllLocations();
 
     //overload ++ to activate all sensors
-
-private:
     std::vector<std::shared_ptr<Location>> unrollSpaces();
     std::vector<std::shared_ptr<Location>> recursiveUnroll(Location& space);
+
+
+private:
+
 
     std::string name {"Control Center"};
     std::vector<std::shared_ptr<Space>> spaces {};

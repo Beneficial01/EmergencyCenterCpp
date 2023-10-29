@@ -24,18 +24,18 @@ void ControlCenter::test()
     }
 }
 
-void ControlCenter::test(std::string locationName)
-{
+//void ControlCenter::test(std::string locationName)
+//{
 
-   /*
-    * PLAN:
-    *
-    * For each in my list of spaces:
-    *   Check if its a location, and if it is check its name.
-    *   if not go through all its locations recursively
-    *
-    */
-}
+//   /*
+//    * PLAN:
+//    *
+//    * For each in my list of spaces:
+//    *   Check if its a location, and if it is check its name.
+//    *   if not go through all its locations recursively
+//    *
+//    */
+//}
 
 std::vector<std::shared_ptr<Location> > ControlCenter::unrollSpaces()
 {
@@ -63,12 +63,16 @@ std::vector<std::shared_ptr<Location> > ControlCenter::unrollSpaces()
 //JUST KEEP THIS FUNCTION AND CALL IT EACH TIME WE ADD A NEW SPACE TO OUR SYSTEM!!!!
 std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location& space)
 {
+    std::cout << "rec called" << std::endl;
+    space.toString();
+
     std::vector<std::shared_ptr<Space>> subspaces;
+    subspaces = space.getSubSpaces();
 
     std::vector<std::shared_ptr<Location>> locations;
     std::vector<std::shared_ptr<Location>> locations2;
 
-    subspaces = space.getSubSpaces();
+
     for(auto& subspace: subspaces){
 
         //if its a location:
@@ -81,12 +85,17 @@ std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location&
             auto loc = std::dynamic_pointer_cast<Location>(subspace);
             locations.push_back(loc);
             locations2.clear();
-            locations2 = recursiveUnroll(*loc);
-            locations.insert(locations2.end(), locations2.begin(), locations2.end());
+            if((*loc).getSubSpaces().size() > 0){
+               locations2 = recursiveUnroll(*loc);
+               locations.insert(locations.end(), locations2.begin(), locations2.end());
+            }
+
         }
 
 
     }
+
+    std::cout << "rec return" << std::endl;
 
     return locations;
 
