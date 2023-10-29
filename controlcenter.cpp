@@ -81,7 +81,10 @@ void ControlCenter::getOverview(std::string comp)
 
 void ControlCenter::activate()
 {
-
+    auto allSensors = getAllSensors();
+    for(auto& sensor: allSensors){
+        sensor->activate();
+    }
 }
 
 void ControlCenter::activate(std::string spaceName)
