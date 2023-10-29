@@ -17,6 +17,18 @@ void ControlCenter::test(Space &space)
     space.trigger();
 }
 
+void ControlCenter::addSpace(std::shared_ptr<Space> space)
+{
+    spaces.push_back(space);
+    if(std::dynamic_pointer_cast<Location>(space) != nullptr){
+        auto loc = std::dynamic_pointer_cast<Location>(space);
+        allLocations.push_back(loc);
+        auto subLocations = recursiveUnroll(*loc);
+        allLocations.insert(allLocations.end(), subLocations.begin(), subLocations.end());
+    }
+
+}
+
 void ControlCenter::test()
 {
     for(auto& space: spaces){
@@ -37,35 +49,11 @@ void ControlCenter::test()
 //    */
 //}
 
-std::vector<std::shared_ptr<Location> > ControlCenter::unrollSpaces()
-{
-    std::vector<std::shared_ptr<Location>> unrolledSpaces;
-    std::vector<std::shared_ptr<Location>> unrolledSpaces2;
-
-    for(auto& space: spaces){
-
-        if(std::dynamic_pointer_cast<Location>(space) != nullptr){
-            auto loc = std::dynamic_pointer_cast<Location>(space);
-            unrolledSpaces2 = recursiveUnroll( *loc );
-            unrolledSpaces.push_back(loc);
-            unrolledSpaces.insert(unrolledSpaces2.end(), unrolledSpaces2.begin(), unrolledSpaces2.end());
-        }
-
-//        unrolledSpaces.push_back(space);
-//        unrolledSpaces2 = unrolledSpaces(space);
-//        unrolledSpaces.insert();
-    }
-
-    return unrolledSpaces;
-}
 
 
 //JUST KEEP THIS FUNCTION AND CALL IT EACH TIME WE ADD A NEW SPACE TO OUR SYSTEM!!!!
 std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location& space)
 {
-    std::cout << "rec called" << std::endl;
-    space.toString();
-
     std::vector<std::shared_ptr<Space>> subspaces;
     subspaces = space.getSubSpaces();
 
@@ -75,12 +63,7 @@ std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location&
 
     for(auto& subspace: subspaces){
 
-        //if its a location:
-        /*
-         * add it to locations
-         * locations 2 become the recursive call of this location
-         * and then I insert it into the first location
-         */
+
         if(std::dynamic_pointer_cast<Location>(subspace) != nullptr){
             auto loc = std::dynamic_pointer_cast<Location>(subspace);
             locations.push_back(loc);
@@ -94,8 +77,6 @@ std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location&
 
 
     }
-
-    std::cout << "rec return" << std::endl;
 
     return locations;
 
