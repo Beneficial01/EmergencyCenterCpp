@@ -43,7 +43,7 @@ public:
 
 
     ///OVERVIEW -> use function objects
-    void getOverview(std::function<bool(std::unique_ptr<Sensor>, std::unique_ptr<Sensor>)> comparator);
+    void getOverview(std::string comp);
 
     //all sensors ordered by vendor
     //all sensors by ID
@@ -74,14 +74,14 @@ private:
 //all sensors by location name
 
 
-class vendorAlphabetical
-{
-public:
-    bool operator()(std::unique_ptr<Sensor> & s1, std::unique_ptr<Sensor> & s2)
-    {
-        return (s1->getVendorName()) > (s2->getVendorName());
-    }
-};
+//class VendorAlphabetical
+//{
+//public:
+//    bool operator()(std::unique_ptr<Sensor> & s1, std::unique_ptr<Sensor> & s2)
+//    {
+//        return (s1->getVendorName()) > (s2->getVendorName());
+//    }
+//};
 
 
 

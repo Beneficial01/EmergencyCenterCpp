@@ -47,10 +47,23 @@ void ControlCenter::testByLocation(std::string locationName)
 
 }
 
-void ControlCenter::getOverview(std::function<bool (std::unique_ptr<Sensor>, std::unique_ptr<Sensor>)> comparator)
+void ControlCenter::getOverview(std::string comp)
 {
+/*
+ *
+ *FIX THE IF ELSE STRUCTURE TO DETERMINE THE COMPARITOR!!!
+ *
+ *
+ */
+    std::vector<std::shared_ptr<Sensor>> sensors = getAllSensors();
+    if(comp == "vendor"){
+        std::sort(sensors.begin(), sensors.end(), [](auto & s1, auto & s2)
+                  {return s1->getVendorName() > s2->getVendorName();});
+    }
 
-
+    for(auto&s: sensors){
+        std::cout << s->getVendorName() << std::endl;
+    }
 
 }
 
