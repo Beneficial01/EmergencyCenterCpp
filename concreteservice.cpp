@@ -13,9 +13,11 @@ ConcreteService::ConcreteService()
     std::cout << "Creating a concrete service" << std::endl;
 }
 
-void ConcreteService::update() const
+// IF YOU DON'T ALREADY KNOW, include this std::string locName
+void ConcreteService::update(std::string sensorType, int id) const
 {
     std::cout << text << std::endl;
+    std::cout << "from " << sensorType << "Sensor, of id :"  << id << std::endl;
 }
 
 void ConcreteService::setText(const std::string &newText)

@@ -2,13 +2,15 @@
 #define SERVICE_H
 
 #include "EmergencyCentreLib_global.h"
+#include <string>
 
 class EMERGENCYCENTRELIB_EXPORT Service
 {
 public:
     Service() = default;
     virtual ~Service() = default;
-    virtual void update() const = 0;
+    //std::string locName INCLUDE THIS LATER ON AFTER GETTING CHANGES FROM LOCATION
+    virtual void update(std::string sensorType, int id) const = 0;
 
 };
 
