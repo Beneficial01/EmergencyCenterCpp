@@ -17,6 +17,7 @@ SOURCES += \
     sensor.cpp \
     smokesensor.cpp \
     toxicgassensor.cpp
+    location.cpp
 
 HEADERS += \
     EmergencyCentreLib_global.h \
@@ -25,6 +26,7 @@ HEADERS += \
     librarytest.h \
     motionsensor.h \
     sensor.h \
+    location.h \
     service.h \
     smokesensor.h \
     space.h \
