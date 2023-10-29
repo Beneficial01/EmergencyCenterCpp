@@ -13,6 +13,10 @@ SOURCES += \
     concreteservice.cpp \
     emergencycentrelib.cpp \
     librarytest.cpp \
+    motionsensor.cpp \
+    sensor.cpp \
+    smokesensor.cpp \
+    toxicgassensor.cpp
     location.cpp
 
 HEADERS += \
@@ -20,9 +24,13 @@ HEADERS += \
     concreteservice.h \
     emergencycentrelib.h \
     librarytest.h \
+    motionsensor.h \
+    sensor.h \
     location.h \
     service.h \
-    space.h
+    smokesensor.h \
+    space.h \
+    toxicgassensor.h
 
 # Default rules for deployment.
 unix {
