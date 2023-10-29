@@ -17,9 +17,9 @@ public:
     //second constructor with name
 
     /// TESTING:
-    void test(Space& space);
-    //test all
-    //test by location name
+    void test(Space& space);//test all in space
+    void test();//test all
+    void test(std::string locationName);//test by location name
     //test(string name, class type)
     //test(class type)
     //get all locations in string form -> structure print as tree
@@ -53,6 +53,7 @@ public:
     //overload ++ to activate all sensors
 
 private:
+    std::vector<std::shared_ptr<Space>> unrollSpaces();
     std::string name {"Control Center"};
     std::vector<std::shared_ptr<Space>> spaces {};
 };
