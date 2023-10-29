@@ -12,6 +12,10 @@ class EMERGENCYCENTRELIB_EXPORT Location: public Space
 public:
     Location();
     std::string toString() const override;
+    /**
+     * @brief Triggers all Spaces found within this space
+     * @return bool to indicate success
+     */
     bool trigger() const override;
     void addSpace(std::shared_ptr<Space> space);
     void setSpaceName(const std::string &newSpaceName);
