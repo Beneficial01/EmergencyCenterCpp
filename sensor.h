@@ -21,10 +21,17 @@ public:
     void addService(std::shared_ptr<Service> service );
     int getSensorId() const;
     std::string getVendorName() const;
+    bool getActivated() const;
+    bool getTimerState() const;
+    std::string getStartTime() const;
+    std::string getEndTime() const;
+
+    void setStartTime(const std::string &newStartTime);
+    void setEndTime(const std::string &newEndTime);
 
 private:
     //attributes
-    bool activated;
+    bool activated {false};
     std::string startTime;
     std::string endTime;
     bool timerState;
