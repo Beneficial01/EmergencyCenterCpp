@@ -1,5 +1,6 @@
 #include "controlcenter.h"
 
+
 ControlCenter::ControlCenter()
 {
 
@@ -36,26 +37,58 @@ void ControlCenter::test(std::string locationName)
     */
 }
 
-std::vector<std::shared_ptr<Space> > ControlCenter::unrollSpaces()
+std::vector<std::shared_ptr<Location> > ControlCenter::unrollSpaces()
 {
-    std::vector<std::shared_ptr<Space>> unrolledSpaces;
-    std::vector<std::shared_ptr<Space>> unrolledSpaces2;
+    std::vector<std::shared_ptr<Location>> unrolledSpaces;
+    std::vector<std::shared_ptr<Location>> unrolledSpaces2;
 
     for(auto& space: spaces){
 
-        unrolledSpaces2 = recursiveUnroll(*space);
-        unrolledSpaces.insert(unrolledSpaces2.end(), unrolledSpaces2.begin(), unrolledSpaces2.end());
+        if(std::dynamic_pointer_cast<Location>(space) != nullptr){
+            auto loc = std::dynamic_pointer_cast<Location>(space);
+            unrolledSpaces2 = recursiveUnroll( *loc );
+            unrolledSpaces.push_back(loc);
+            unrolledSpaces.insert(unrolledSpaces2.end(), unrolledSpaces2.begin(), unrolledSpaces2.end());
+        }
+
 //        unrolledSpaces.push_back(space);
 //        unrolledSpaces2 = unrolledSpaces(space);
 //        unrolledSpaces.insert();
     }
 
-
-
+    return unrolledSpaces;
 }
 
-std::vector<std::shared_ptr<Space> > ControlCenter::recursiveUnroll(Space& space)
+
+//JUST KEEP THIS FUNCTION AND CALL IT EACH TIME WE ADD A NEW SPACE TO OUR SYSTEM!!!!
+std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location& space)
 {
+    std::vector<std::shared_ptr<Space>> subspaces;
+
+    std::vector<std::shared_ptr<Location>> locations;
+    std::vector<std::shared_ptr<Location>> locations2;
+
+    subspaces = space.getSubSpaces();
+    for(auto& subspace: subspaces){
+
+        //if its a location:
+        /*
+         * add it to locations
+         * locations 2 become the recursive call of this location
+         * and then I insert it into the first location
+         */
+        if(std::dynamic_pointer_cast<Location>(subspace) != nullptr){
+            auto loc = std::dynamic_pointer_cast<Location>(subspace);
+            locations.push_back(loc);
+            locations2.clear();
+            locations2 = recursiveUnroll(*loc);
+            locations.insert(locations2.end(), locations2.begin(), locations2.end());
+        }
+
+
+    }
+
+    return locations;
 
 }
 

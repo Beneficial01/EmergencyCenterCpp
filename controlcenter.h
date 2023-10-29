@@ -53,8 +53,9 @@ public:
     //overload ++ to activate all sensors
 
 private:
-    std::vector<std::shared_ptr<Space>> unrollSpaces();
-    std::vector<std::shared_ptr<Space>> recursiveUnroll(Space& space);
+    std::vector<std::shared_ptr<Location>> unrollSpaces();
+    std::vector<std::shared_ptr<Location>> recursiveUnroll(Location& space);
+
     std::string name {"Control Center"};
     std::vector<std::shared_ptr<Space>> spaces {};
 };
