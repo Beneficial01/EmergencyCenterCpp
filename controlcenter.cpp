@@ -156,22 +156,37 @@ std::vector<std::shared_ptr<Sensor>> ControlCenter::getAllSensorsInSpace(std::st
 
 void ControlCenter::modify(bool b)
 {
-
+    auto allSensors = getAllSensors();
+    for(auto& sensor: allSensors){
+        b ? sensor->activate():sensor->deactivate();
+    }
 }
 
 void ControlCenter::modify(std::string spaceName, bool b)
 {
-
+    auto sensorsInSpace = getAllSensorsInSpace(spaceName);
+    for(auto& sensor: sensorsInSpace){
+        b ? sensor->activate():sensor->deactivate();
+    }
 }
 
 void ControlCenter::modify(std::string spaceName, std::string sensorType, bool b)
 {
-
+    auto sensorsInSpace = getAllSensorsInSpace(spaceName);
+    for(auto& sensor: sensorsInSpace){
+        if(sensor->getSensorType()==sensorType)
+        b ? sensor->activate():sensor->deactivate();
+    }
 }
 
 void ControlCenter::modifyBySensorType(std::string sensorType, bool b)
 {
-
+    auto allSensors = getAllSensors();
+    for(auto& sensor: allSensors){
+        if(sensor->getSensorType()== sensorType){
+            b ? sensor->activate():sensor->deactivate();
+        }
+    }
 }
 
 
