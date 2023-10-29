@@ -7,7 +7,7 @@ class EMERGENCYCENTRELIB_EXPORT MotionSensor: public Sensor
 {
 public:
     MotionSensor();
-    MotionSensor(std::string vendor);
+    MotionSensor(std::string vendor, std::shared_ptr<Location> loc);
     std::string getSensorType() const override;
 
 };
