@@ -36,3 +36,42 @@ void ControlCenter::test(std::string locationName)
     */
 }
 
+std::vector<std::shared_ptr<Space> > ControlCenter::unrollSpaces()
+{
+    std::vector<std::shared_ptr<Space>> unrolledSpaces;
+    std::vector<std::shared_ptr<Space>> unrolledSpaces2;
+
+    for(auto& space: spaces){
+
+        unrolledSpaces2 = recursiveUnroll(*space);
+        unrolledSpaces.insert(unrolledSpaces2.end(), unrolledSpaces2.begin(), unrolledSpaces2.end());
+//        unrolledSpaces.push_back(space);
+//        unrolledSpaces2 = unrolledSpaces(space);
+//        unrolledSpaces.insert();
+    }
+
+
+
+}
+
+std::vector<std::shared_ptr<Space> > ControlCenter::recursiveUnroll(Space& space)
+{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
