@@ -47,6 +47,13 @@ void ControlCenter::testByLocation(std::string locationName)
 
 }
 
+void ControlCenter::getOverview(std::function<bool (std::unique_ptr<Sensor>, std::unique_ptr<Sensor>)> comparator)
+{
+
+
+
+}
+
 //void ControlCenter::testBySensorType(std::string sensorType)
 //{
 //    for(auto& location: allLocations){
@@ -87,6 +94,23 @@ std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location&
 
     return locations;
 
+}
+
+std::vector<std::shared_ptr<Sensor> > ControlCenter::getAllSensors()
+{
+    std::vector<std::shared_ptr<Sensor>> sensors;
+    std::vector<std::shared_ptr<Space>> subSpaces;
+
+    for(auto& l: allLocations){
+        subSpaces = l->getSubSpaces();
+        for(auto& s: subSpaces){
+            if(std::dynamic_pointer_cast<Sensor>(s) != nullptr){
+               sensors.push_back(std::dynamic_pointer_cast<Sensor>(s));
+            }
+        }
+    }
+
+    return sensors;
 }
 
 

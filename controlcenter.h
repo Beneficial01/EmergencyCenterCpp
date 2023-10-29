@@ -5,8 +5,9 @@
 #include <vector>
 #include <memory>
 #include <iostream>
+#include <algorithm>
 #include "space.h"
-//#include "sensor.h"
+#include "sensor.h"
 #include "location.h"
 #include "EmergencyCentreLib_global.h"
 
@@ -21,7 +22,7 @@ public:
     void test(Space& space);//test all in space
     void test();//test all
     void testByLocation(std::string locationName);//test by location name
-    //void testBySensorType(std::string sensorType);
+    void testBySensorType(std::string sensorType);
     //test(string name, class type)
     //get all locations in string form -> structure print as tree
 
@@ -42,6 +43,8 @@ public:
 
 
     ///OVERVIEW -> use function objects
+    void getOverview(std::function<bool(std::unique_ptr<Sensor>, std::unique_ptr<Sensor>)> comparator);
+
     //all sensors ordered by vendor
     //all sensors by ID
     //all sensors by location name
@@ -58,10 +61,28 @@ public:
 
 private:
     std::vector<std::shared_ptr<Location>> recursiveUnroll(Location& space);
-
     std::string name {"Control Center"};
     std::vector<std::shared_ptr<Space>> spaces {};
     std::vector<std::shared_ptr<Location>> allLocations {};
+    std::vector<std::shared_ptr<Sensor>> getAllSensors();
 };
+
+
+
+//all sensors ordered by vendor
+//all sensors by ID
+//all sensors by location name
+
+
+class vendorAlphabetical
+{
+public:
+    bool operator()(std::unique_ptr<Sensor> & s1, std::unique_ptr<Sensor> & s2)
+    {
+        return (s1->getVendorName()) > (s2->getVendorName());
+    }
+};
+
+
 
 #endif // CONTROLCENTER_H
