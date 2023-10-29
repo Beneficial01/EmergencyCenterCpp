@@ -37,15 +37,6 @@ public:
     void deactivate(std::string spaceName, std::string sensorType);
     void deactivateBySensorType(std::string sensorType);
 
-    //void deactivate(Space& space);
-    //deactivate() -> all
-    //deactivate(string SpaceName)
-    //deactivate(string SpaceName, class type)
-
-    //PRIVATE FUNCTION WITH BOOL TO KNOW AVTIVATE OR DEACTIVATE
-    //get all sensors from location from its name
-
-
 
     ///OVERVIEW -> use function objects
     void getOverview(std::string comp);
