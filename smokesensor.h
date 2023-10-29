@@ -5,7 +5,7 @@
 
 
 
-class EMERGENCYCENTRELIB_EXPORT SmokeSensor: Sensor
+class EMERGENCYCENTRELIB_EXPORT SmokeSensor: public Sensor
 {
 public:
     SmokeSensor();
