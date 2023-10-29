@@ -21,7 +21,7 @@ bool Sensor::trigger() const
 {
 
     for(auto& service : services){
-        service->update();
+        service->update(this->getSensorType(), this->getSensorId());
     }
     return true;
 
