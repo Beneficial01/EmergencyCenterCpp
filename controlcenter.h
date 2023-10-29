@@ -6,7 +6,7 @@
 #include <memory>
 #include <iostream>
 #include "space.h"
-//#include "sensor.h"
+#include "sensor.h"
 #include "location.h"
 #include "EmergencyCentreLib_global.h"
 
@@ -28,7 +28,7 @@ public:
     ///ACTIVATION:
     //void activate(Space& space);
     //activate() -> all
-    //activate(string SpaceName)
+    void activate(std::string spaceName);
     //activate(string SpaceName, class type)
     //activate(class type)
     //void deactivate(Space& space);
