@@ -5,6 +5,7 @@
 #include "space.h"
 #include <vector>
 #include <memory>
+#include "location.h"
 
 class EMERGENCYCENTRELIB_EXPORT Sensor: Space
 {
@@ -35,7 +36,6 @@ private:
     std::string startTime;
     std::string endTime;
     bool timerState;
-    //std::shared_ptr<Location> location;
     //std::vector<Service> services;
     std::vector<std::shared_ptr<Service>> services;
 
@@ -43,6 +43,7 @@ protected:
     void generateId();
     int sensorId;
     std::string vendorName;
+    std::shared_ptr<Location> location;
 };
     static int nextId = 1;
 
