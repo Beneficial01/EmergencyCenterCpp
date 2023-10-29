@@ -105,6 +105,16 @@ void ControlCenter::activate(std::string spaceName, std::string sensorType)
     }
 }
 
+void ControlCenter::activateBySensorType(std::string sensorType)
+{
+    auto allSensors = getAllSensors();
+    for(auto& sensor: allSensors){
+        if(sensor->getSensorType()== sensorType){
+        sensor->activate();
+        }
+    }
+}
+
 //void ControlCenter::testBySensorType(std::string sensorType)
 //{
 //    for(auto& location: allLocations){
