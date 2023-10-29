@@ -20,6 +20,8 @@ public:
     void addSpace(std::shared_ptr<Space> space);
     void setSpaceName(const std::string &newSpaceName);
 
+    std::vector<std::shared_ptr<Space> > getSubSpaces() const;
+
 private:
     std::vector<std::shared_ptr<Space>> subSpaces {};
     std::string spaceName;
