@@ -47,6 +47,38 @@ void ControlCenter::testByLocation(std::string locationName)
 
 }
 
+void ControlCenter::getOverview(std::string comp)
+{
+/*
+ *
+ *FIX THE IF ELSE STRUCTURE TO DETERMINE THE COMPARITOR!!!
+ *
+ *
+ */
+    std::vector<std::shared_ptr<Sensor>> sensors = getAllSensors();
+    if(comp == "vendor"){
+        std::sort(sensors.begin(), sensors.end(), [](auto & s1, auto & s2)
+                  {return s1->getVendorName() < s2->getVendorName();});
+    }
+    else if(comp == "id"){
+        std::sort(sensors.begin(), sensors.end(), [](auto & s1, auto & s2)
+                  {return s1->getSensorId() < s2->getSensorId();});
+    }
+    else if(comp == "location"){
+        std::sort(sensors.begin(), sensors.end(), [](auto & s1, auto & s2)
+                  {return s1->getLocation() < s2->getLocation();});
+    }
+
+    for(auto&s: sensors){
+        std::cout << s->getVendorName() << std::endl;
+        std::cout << s->getSensorId() << std::endl;
+        std::cout << s->getLocation() << std::endl;
+    }
+
+    std::cout << "test" << std::endl;
+
+}
+
 void ControlCenter::activate()
 {
 
@@ -139,6 +171,23 @@ std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location&
 
     return locations;
 
+}
+
+std::vector<std::shared_ptr<Sensor> > ControlCenter::getAllSensors()
+{
+    std::vector<std::shared_ptr<Sensor>> sensors;
+    std::vector<std::shared_ptr<Space>> subSpaces;
+
+    for(auto& l: allLocations){
+        subSpaces = l->getSubSpaces();
+        for(auto& s: subSpaces){
+            if(std::dynamic_pointer_cast<Sensor>(s) != nullptr){
+               sensors.push_back(std::dynamic_pointer_cast<Sensor>(s));
+            }
+        }
+    }
+
+    return sensors;
 }
 
 

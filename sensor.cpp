@@ -43,6 +43,11 @@ void Sensor::generateId()
     nextId++;
 }
 
+std::string Sensor::getLocation() const
+{
+    return location->getSpaceName();
+}
+
 
 
 int Sensor::getSensorId() const

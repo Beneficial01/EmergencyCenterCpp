@@ -30,6 +30,8 @@ public:
     void setStartTime(const std::string &newStartTime);
     void setEndTime(const std::string &newEndTime);
 
+    std::string getLocation() const;
+
 private:
     //attributes
     bool activated {false};
