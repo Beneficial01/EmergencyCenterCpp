@@ -29,7 +29,7 @@ public:
     //void activate(Space& space);
     //activate() -> all
     void activate(std::string spaceName);
-    //activate(string SpaceName, class type)
+    void activate(std::string spaceName, std::string sensorType);
     //activate(class type)
     //void deactivate(Space& space);
     //deactivate() -> all
@@ -62,6 +62,7 @@ private:
     std::string name {"Control Center"};
     std::vector<std::shared_ptr<Space>> spaces {};
     std::vector<std::shared_ptr<Location>> allLocations {};
+    std::vector<std::shared_ptr<Sensor>> getAllSensorsInSpace(std::string spaceName);
 };
 
 #endif // CONTROLCENTER_H

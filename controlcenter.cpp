@@ -75,6 +75,11 @@ void ControlCenter::activate(std::string spaceName)
 
 }
 
+void ControlCenter::activate(std::string spaceName, std::string sensorType)
+{
+
+}
+
 //void ControlCenter::testBySensorType(std::string sensorType)
 //{
 //    for(auto& location: allLocations){
@@ -84,6 +89,28 @@ void ControlCenter::activate(std::string spaceName)
 //    }
 //}
 
+
+std::vector<std::shared_ptr<Sensor>> ControlCenter::getAllSensorsInSpace(std::string spaceName) {
+
+    std::vector<std::shared_ptr<Sensor>> sensorsInSpace;
+
+    for(auto& location: allLocations)
+    {
+        if (location->getSpaceName() == spaceName) {
+            auto allSubspaces = recursiveUnroll(*location);
+
+            for (const auto& subspace : allSubspaces) {
+                auto findingSubspace = subspace->getSubSpaces();
+                for (const auto& maybeSensor : findingSubspace) {
+                    if (auto sensor = std::dynamic_pointer_cast<Sensor>(maybeSensor)) {
+                        sensorsInSpace.push_back(sensor);
+                    }
+                }
+            }
+        }
+    }
+    return sensorsInSpace;
+}
 
 
 //JUST KEEP THIS FUNCTION AND CALL IT EACH TIME WE ADD A NEW SPACE TO OUR SYSTEM!!!!
@@ -116,8 +143,6 @@ std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location&
     return locations;
 
 }
-
-
 
 
 
