@@ -46,3 +46,8 @@ std::vector<std::shared_ptr<Space> > Location::getSubSpaces() const
 {
     return subSpaces;
 }
+
+std::string Location::getSpaceName() const
+{
+    return spaceName;
+}

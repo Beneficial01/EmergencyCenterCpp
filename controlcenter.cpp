@@ -36,18 +36,16 @@ void ControlCenter::test()
     }
 }
 
-//void ControlCenter::test(std::string locationName)
-//{
+void ControlCenter::test(std::string locationName)
+{
 
-//   /*
-//    * PLAN:
-//    *
-//    * For each in my list of spaces:
-//    *   Check if its a location, and if it is check its name.
-//    *   if not go through all its locations recursively
-//    *
-//    */
-//}
+    for(auto& location: allLocations){
+        if(location->getSpaceName() == locationName){
+            location->trigger();
+        }
+    }
+
+}
 
 
 

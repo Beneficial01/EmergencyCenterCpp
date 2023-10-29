@@ -22,6 +22,8 @@ public:
 
     std::vector<std::shared_ptr<Space> > getSubSpaces() const;
 
+    std::string getSpaceName() const;
+
 private:
     std::vector<std::shared_ptr<Space>> subSpaces {};
     std::string spaceName;

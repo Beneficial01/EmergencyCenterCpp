@@ -26,12 +26,12 @@ public:
     //get all locations in string form -> structure print as tree
 
     ///ACTIVATION:
-    void activate(Space& space);
+    //void activate(Space& space);
     //activate() -> all
     //activate(string SpaceName)
     //activate(string SpaceName, class type)
     //activate(class type)
-    void deactivate(Space& space);
+    //void deactivate(Space& space);
     //deactivate() -> all
     //deactivate(string SpaceName)
     //deactivate(string SpaceName, class type)
