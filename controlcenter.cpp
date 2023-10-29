@@ -36,7 +36,7 @@ void ControlCenter::test()
     }
 }
 
-void ControlCenter::test(std::string locationName)
+void ControlCenter::testByLocation(std::string locationName)
 {
 
     for(auto& location: allLocations){
@@ -46,6 +46,15 @@ void ControlCenter::test(std::string locationName)
     }
 
 }
+
+//void ControlCenter::testBySensorType(std::string sensorType)
+//{
+//    for(auto& location: allLocations){
+//        if(location->getSpaceName() == locationName){
+//            location->trigger();
+//        }
+//    }
+//}
 
 
 

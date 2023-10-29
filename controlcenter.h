@@ -20,9 +20,9 @@ public:
     /// TESTING:
     void test(Space& space);//test all in space
     void test();//test all
-    void test(std::string locationName);//test by location name
+    void testByLocation(std::string locationName);//test by location name
+    //void testBySensorType(std::string sensorType);
     //test(string name, class type)
-    //test(class type)
     //get all locations in string form -> structure print as tree
 
     ///ACTIVATION:
