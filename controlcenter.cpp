@@ -75,6 +75,8 @@ void ControlCenter::getOverview(std::string comp)
         std::cout << s->getLocation() << std::endl;
     }
 
+    std::cout << "test" << std::endl;
+
 }
 
 //void ControlCenter::testBySensorType(std::string sensorType)
