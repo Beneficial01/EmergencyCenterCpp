@@ -27,7 +27,7 @@ public:
 
     ///ACTIVATION:
     //void activate(Space& space);
-    //activate() -> all
+    void activate();
     void activate(std::string spaceName);
     void activate(std::string spaceName, std::string sensorType);
     //activate(class type)

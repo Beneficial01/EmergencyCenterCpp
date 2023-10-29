@@ -47,6 +47,11 @@ void ControlCenter::testByLocation(std::string locationName)
 
 }
 
+void ControlCenter::activate()
+{
+
+}
+
 void ControlCenter::activate(std::string spaceName)
 {
 
