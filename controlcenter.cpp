@@ -154,6 +154,26 @@ std::vector<std::shared_ptr<Sensor>> ControlCenter::getAllSensorsInSpace(std::st
     return sensorsInSpace;
 }
 
+void ControlCenter::modify(bool b)
+{
+
+}
+
+void ControlCenter::modify(std::string spaceName, bool b)
+{
+
+}
+
+void ControlCenter::modify(std::string spaceName, std::string sensorType, bool b)
+{
+
+}
+
+void ControlCenter::modifyBySensorType(std::string sensorType, bool b)
+{
+
+}
+
 
 //JUST KEEP THIS FUNCTION AND CALL IT EACH TIME WE ADD A NEW SPACE TO OUR SYSTEM!!!!
 std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location& space)
