@@ -12,12 +12,43 @@ class ControlCenter
 {
 public:
     ControlCenter();
+    //second constructor with name
+
+    /// TESTING:
     bool test(Space& space);
+    //test all
+    //test by location name
+    //test(string name, class type)
+    //test(class type)
+    //get all locations in string form -> structure print as tree
+
+    ///ACTIVATION:
     void activate(Space& space);
+    //activate() -> all
+    //activate(string SpaceName)
+    //activate(string SpaceName, class type)
+    //activate(class type)
     void deactivate(Space& space);
+    //deactivate() -> all
+    //deactivate(string SpaceName)
+    //deactivate(string SpaceName, class type)
+
+    //PRIVATE FUNCTION WITH BOOL TO KNOW AVTIVATE OR DEACTIVATE
+    //get all sensors from location from its name
+
+
+
+    ///OVERVIEW -> use function objects
+    //all sensors ordered by vendor
+    //all sensors by ID
+    //all sensors by location name
+
+
     void addSpace(std::shared_ptr<Space> space);
 //    std::vector<std::shared_ptr<Sensor>> getAllSensors();
     std::vector<std::shared_ptr<Location>> getAllLocations();
+
+    //overload ++ to activate all sensors
 
 private:
     std::string name {};
