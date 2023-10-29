@@ -12,14 +12,25 @@ CONFIG += c++17
 SOURCES += \
     concreteservice.cpp \
     emergencycentrelib.cpp \
-    librarytest.cpp
+    librarytest.cpp \
+    motionsensor.cpp \
+    sensor.cpp \
+    smokesensor.cpp \
+    toxicgassensor.cpp \
+    location.cpp
 
 HEADERS += \
     EmergencyCentreLib_global.h \
     concreteservice.h \
     emergencycentrelib.h \
     librarytest.h \
-    service.h
+    motionsensor.h \
+    sensor.h \
+    location.h \
+    service.h \
+    smokesensor.h \
+    space.h \
+    toxicgassensor.h
 
 # Default rules for deployment.
 unix {

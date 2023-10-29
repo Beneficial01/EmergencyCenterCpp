@@ -6,11 +6,12 @@
 #include "EmergencyCentreLib_global.h"
 #include "service.h"
 
-class EMERGENCYCENTRELIB_EXPORT ConcreteService:  Service
+class EMERGENCYCENTRELIB_EXPORT ConcreteService:  public Service
 {
 public:
     ConcreteService();
-    virtual void update() const override;
+    //std::string locName INCLUDE THIS AS WELL
+    virtual void update(std::string sensorType, int id) const override;
 
     void setText(const std::string &newText);
     std::string getText() const;
