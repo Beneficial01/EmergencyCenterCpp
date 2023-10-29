@@ -13,6 +13,7 @@ SOURCES += \
     concreteservice.cpp \
     emergencycentrelib.cpp \
     librarytest.cpp \
+    motionsensor.cpp \
     sensor.cpp \
     smokesensor.cpp
 
@@ -21,6 +22,7 @@ HEADERS += \
     concreteservice.h \
     emergencycentrelib.h \
     librarytest.h \
+    motionsensor.h \
     sensor.h \
     service.h \
     smokesensor.h \
