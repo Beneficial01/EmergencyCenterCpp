@@ -16,7 +16,7 @@ SOURCES += \
     motionsensor.cpp \
     sensor.cpp \
     smokesensor.cpp \
-    toxicgassensor.cpp
+    toxicgassensor.cpp \
     location.cpp
 
 HEADERS += \
