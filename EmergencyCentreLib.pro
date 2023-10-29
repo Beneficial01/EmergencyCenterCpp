@@ -11,6 +11,7 @@ CONFIG += c++17
 
 SOURCES += \
     concreteservice.cpp \
+    controlcenter.cpp \
     emergencycentrelib.cpp \
     librarytest.cpp \
     motionsensor.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 HEADERS += \
     EmergencyCentreLib_global.h \
     concreteservice.h \
+    controlcenter.h \
     emergencycentrelib.h \
     librarytest.h \
     motionsensor.h \
