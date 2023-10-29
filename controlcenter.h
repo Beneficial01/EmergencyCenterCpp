@@ -7,15 +7,17 @@
 #include "space.h"
 //#include "sensor.h"
 #include "location.h"
+#include "EmergencyCentreLib_global.h"
 
-class ControlCenter
+class EMERGENCYCENTRELIB_EXPORT ControlCenter
 {
 public:
     ControlCenter();
+    ControlCenter(std::string n);
     //second constructor with name
 
     /// TESTING:
-    bool test(Space& space);
+    void test(Space& space);
     //test all
     //test by location name
     //test(string name, class type)
@@ -51,7 +53,7 @@ public:
     //overload ++ to activate all sensors
 
 private:
-    std::string name {};
+    std::string name {"Control Center"};
     std::vector<std::shared_ptr<Space>> spaces {};
 };
 
