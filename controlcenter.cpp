@@ -81,38 +81,22 @@ void ControlCenter::getOverview(std::string comp)
 
 void ControlCenter::activate()
 {
-    auto allSensors = getAllSensors();
-    for(auto& sensor: allSensors){
-        sensor->activate();
-    }
+    modify(true);
 }
 
 void ControlCenter::activate(std::string spaceName)
 {
-
-    auto sensorsInSpace = getAllSensorsInSpace(spaceName);
-    for(auto& sensor: sensorsInSpace){
-        sensor->activate();
-    }
+    modify(spaceName, true);
 }
 
 void ControlCenter::activate(std::string spaceName, std::string sensorType)
 {
-    auto sensorsInSpace = getAllSensorsInSpace(spaceName);
-    for(auto& sensor: sensorsInSpace){
-        if(sensor->getSensorType()==sensorType)
-        sensor->activate();
-    }
+    modify(spaceName, sensorType, true);
 }
 
 void ControlCenter::activateBySensorType(std::string sensorType)
 {
-    auto allSensors = getAllSensors();
-    for(auto& sensor: allSensors){
-        if(sensor->getSensorType()== sensorType){
-        sensor->activate();
-        }
-    }
+    modifyBySensorType(sensorType, true);
 }
 
 //void ControlCenter::testBySensorType(std::string sensorType)

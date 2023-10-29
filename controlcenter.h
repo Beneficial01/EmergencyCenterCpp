@@ -32,6 +32,10 @@ public:
     void activate(std::string spaceName, std::string sensorType);
     void activateBySensorType(std::string sensorType);
 
+    void deactivate();
+    void deactivate(std::string spaceName);
+    void deactivate(std::string spaceName, std::string sensorType);
+    void deactivateBySensorType(std::string sensorType);
 
     //void deactivate(Space& space);
     //deactivate() -> all
