@@ -99,6 +99,26 @@ void ControlCenter::activateBySensorType(std::string sensorType)
     modifyBySensorType(sensorType, true);
 }
 
+void ControlCenter::deactivate()
+{
+    modify(false);
+}
+
+void ControlCenter::deactivate(std::string spaceName)
+{
+    modify(spaceName, false);
+}
+
+void ControlCenter::deactivate(std::string spaceName, std::string sensorType)
+{
+    modify(spaceName, sensorType, false);
+}
+
+void ControlCenter::deactivateBySensorType(std::string sensorType)
+{
+    modifyBySensorType(sensorType, false);
+}
+
 //void ControlCenter::testBySensorType(std::string sensorType)
 //{
 //    for(auto& location: allLocations){
