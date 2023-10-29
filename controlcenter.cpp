@@ -69,10 +69,24 @@ void ControlCenter::getOverview(std::string comp)
                   {return s1->getLocation() < s2->getLocation();});
     }
 
+
+
+    //in the next part we create a structured print of all sensors
+    std::cout << "Overview of sensors:" << std::endl << std::endl;
+
+
     for(auto&s: sensors){
-        std::cout << s->getVendorName() << std::endl;
-        std::cout << s->getSensorId() << std::endl;
-        std::cout << s->getLocation() << std::endl;
+        std::cout << "Sensor ID: " << s->getSensorId() << std::endl;
+        std::cout << "Vendor name: " << s->getVendorName() << std::endl;
+        std::cout << "Sensor location: " << s->getLocation() << std::endl;
+        if(s->getTimerState()){
+            std::cout << "Activate start time: " << s->getStartTime() << std::endl;
+            std::cout << "Activate end time: " << s->getEndTime() << std::endl;
+        }
+        else{
+            std::cout << "Sensor activation is time independent"  << std::endl;
+        }
+        std::cout << std::endl;
     }
 
     std::cout << "test" << std::endl;
