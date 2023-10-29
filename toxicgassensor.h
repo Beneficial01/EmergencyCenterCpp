@@ -9,7 +9,7 @@ class EMERGENCYCENTRELIB_EXPORT ToxicGasSensor: public Sensor
 {
 public:
     ToxicGasSensor();
-    ToxicGasSensor(std::string vendor);
+    ToxicGasSensor(std::string vendor, int gas);
     std::string getSensorType() const override;
 
 private:
