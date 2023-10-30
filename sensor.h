@@ -5,6 +5,7 @@
 #include "space.h"
 #include <vector>
 #include <memory>
+#include <ctime>
 #include "location.h"
 
 class EMERGENCYCENTRELIB_EXPORT Sensor: public Space
@@ -24,23 +25,23 @@ public:
     std::string getVendorName() const;
     bool getActivated() const;
     bool getTimerState() const;
-    std::string getStartTime() const;
-    std::string getEndTime() const;
-    void setTimeDependent(bool state) const;
+    struct tm getStartTime() const;
+    struct tm getEndTime() const;
+    void setTimeDependent(bool state);
     bool isTimeDependent() const;
     bool isTimeWithinBounds() const;
 
-    void setStartTime(const std::string &newStartTime);
-    void setEndTime(const std::string &newEndTime);
+    void setStartTime(const int hour, const int min);
+    void setEndTime(const int hour, const int min);
 
     std::string getLocation() const;
 
 private:
     //attributes
     bool activated {false};
-    std::string startTime;
-    std::string endTime;
-    bool isTimeDependent;
+    struct tm startTime;
+    struct tm endTime;
+    bool timeDependent;
     //std::vector<Service> services;
     std::vector<std::shared_ptr<Service>> services;
 
