@@ -23,11 +23,11 @@ bool Sensor::isTimeWithinBounds() const
     std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
     std::time_t now_time = std::chrono::system_clock::to_time_t(now);
 
-    // Convert the start and end times to std::tm.
+    // Convert the start and end times to std::tm, assuming the seconds are 0.
     std::tm tm_start = {};
     std::tm tm_end = {};
-    strptime(startTime.c_str(), "%H:%M:%S", &tm_start);
-    strptime(endTime.c_str(), "%H:%M:%S", &tm_end);
+    strptime((startTime + ":00").c_str(), "%H:%M:%S", &tm_start);
+    strptime((endTime + ":00").c_str(), "%H:%M:%S", &tm_end);
 
     // Convert the std::tm times to std::chrono time_points.
     std::chrono::system_clock::time_point start_time = std::chrono::system_clock::from_time_t(std::mktime(&tm_start));
@@ -99,7 +99,12 @@ std::string Sensor::getStartTime() const
 
 void Sensor::setStartTime(const std::string &newStartTime)
 {
-    startTime = newStartTime;
+    std::regex timeRegex("^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$"); // Regex pattern for HH:MM format
+    if (std::regex_match(newStartTime, timeRegex)) {
+        startTime = newStartTime ;
+    } else {
+        throw std::invalid_argument("Invalid time format. Please provide time in 'HH:MM' format.");
+    }
 }
 
 std::string Sensor::getEndTime() const
