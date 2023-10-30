@@ -54,6 +54,23 @@ void ControlCenter::testByLocation(std::string locationName)
 
 }
 
+void ControlCenter::testBySensorType(std::string sensorType)
+{
+    for(auto& location: allLocations){
+        std::vector<std::shared_ptr<Space>> subSpaces = location->getSubSpaces();
+
+        for(auto& space: subSpaces){
+            if(std::dynamic_pointer_cast<Sensor>(space) != nullptr){
+                auto s = std::dynamic_pointer_cast<Sensor>(space);
+                if(s->getSensorType() == sensorType){
+                    s->trigger();
+                }
+            }
+        }
+
+    }
+}
+
 void ControlCenter::test(std::string locationName, std::string sensorType)
 {
 
@@ -178,9 +195,16 @@ std::vector<std::shared_ptr<Sensor>> ControlCenter::getAllSensorsInSpace(std::st
             for (const auto& subspace : allSubspaces) {
                 auto findingSubspace = subspace->getSubSpaces();
                 for (const auto& maybeSensor : findingSubspace) {
-                    if (auto sensor = std::dynamic_pointer_cast<Sensor>(maybeSensor)) {
-                        sensorsInSpace.push_back(sensor);
+                    if (std::dynamic_pointer_cast<Sensor>(maybeSensor) != nullptr) {
+                        sensorsInSpace.push_back(std::dynamic_pointer_cast<Sensor>(maybeSensor));
                     }
+                }
+            }
+
+            auto internalSubspaces = location->getSubSpaces();
+            for(auto& is: internalSubspaces){
+                if (std::dynamic_pointer_cast<Sensor>(is) != nullptr) {
+                    sensorsInSpace.push_back(std::dynamic_pointer_cast<Sensor>(is));
                 }
             }
         }

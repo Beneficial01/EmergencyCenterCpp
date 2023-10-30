@@ -40,7 +40,7 @@ private:
     bool activated {false};
     struct tm startTime;
     struct tm endTime;
-    bool timeDependent;
+    bool timeDependent {false};
     //std::vector<Service> services;
     std::vector<std::shared_ptr<Service>> services;
 

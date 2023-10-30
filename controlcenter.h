@@ -57,6 +57,10 @@ public:
     ControlCenter& operator++();
 
 
+    std::vector<std::shared_ptr<Sensor>> getAllSensorsInSpace(std::string spaceName);
+
+
+
 
 private:
     std::vector<std::shared_ptr<Location>> recursiveUnroll(Location& space);
@@ -64,7 +68,6 @@ private:
     std::vector<std::shared_ptr<Space>> spaces {};
     std::vector<std::shared_ptr<Location>> allLocations {};
     std::vector<std::shared_ptr<Sensor>> getAllSensors();
-    std::vector<std::shared_ptr<Sensor>> getAllSensorsInSpace(std::string spaceName);
 
 
 
