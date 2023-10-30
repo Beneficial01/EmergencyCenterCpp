@@ -1,4 +1,5 @@
 #include "sensor.h"
+#include <iostream>
 
 //Sensor::Sensor() {
 
@@ -23,11 +24,12 @@ bool Sensor::isTimeWithinBounds() const
     time (&rawtime);
     timeinfo = localtime (&rawtime);
 
+    std::cout << "current time is " << (*timeinfo).tm_hour << ":" << (*timeinfo).tm_min << std::endl;
+
     // Convert all to minutes
-    int currentTimeMinutes = timeinfo.tm_hour * 60 + timeinfo.tm_min;
+    int currentTimeMinutes = (*timeinfo).tm_hour * 60 + (*timeinfo).tm_min;
     int startTimeMinutes = startTime.tm_hour * 60 + startTime.tm_min;
     int endTimeMinutes = endTime.tm_hour * 60 + endTime.tm_min;
-
     return (currentTimeMinutes >= startTimeMinutes) && (currentTimeMinutes <= endTimeMinutes);
 }
 
@@ -82,9 +84,9 @@ bool Sensor::getActivated() const
 }
 
 
-struct tm Sensor::getStartTime() const
+std::string Sensor::getStartTime() const
 {
-    return startTime;
+    return std::to_string(startTime.tm_hour) + ":" + std::to_string(startTime.tm_min);
 }
 
 void Sensor::setStartTime(const int hour, const int min)
@@ -93,9 +95,9 @@ void Sensor::setStartTime(const int hour, const int min)
     startTime.tm_min = min;
 }
 
-struct tm Sensor::getEndTime() const
+std::string Sensor::getEndTime() const
 {
-    return endTime;
+    return std::to_string(endTime.tm_hour) + ":" + std::to_string(endTime.tm_min);
 }
 
 void Sensor::setTimeDependent(bool state)

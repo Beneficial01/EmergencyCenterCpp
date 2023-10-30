@@ -95,7 +95,7 @@ void ControlCenter::getOverview(std::string comp)
         std::cout << "Sensor ID: " << s->getSensorId() << std::endl;
         std::cout << "Vendor name: " << s->getVendorName() << std::endl;
         std::cout << "Sensor location: " << s->getLocation() << std::endl;
-        if(s->getTimerState()){
+        if(s->isTimeDependent()){
             std::cout << "Activate start time: " << s->getStartTime() << std::endl;
             std::cout << "Activate end time: " << s->getEndTime() << std::endl;
         }

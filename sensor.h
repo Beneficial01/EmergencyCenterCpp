@@ -24,9 +24,8 @@ public:
     int getSensorId() const;
     std::string getVendorName() const;
     bool getActivated() const;
-    bool getTimerState() const;
-    struct tm getStartTime() const;
-    struct tm getEndTime() const;
+    std::string getStartTime() const;
+    std::string getEndTime() const;
     void setTimeDependent(bool state);
     bool isTimeDependent() const;
     bool isTimeWithinBounds() const;
