@@ -23,7 +23,8 @@ public:
     void test();//test all
     void testByLocation(std::string locationName);//test by location name
     void testBySensorType(std::string sensorType);
-    //test(string name, class type)
+    void test(std::string locationName, std::string sensorType);
+
     //get all locations in string form -> structure print as tree
 
     ///ACTIVATION:

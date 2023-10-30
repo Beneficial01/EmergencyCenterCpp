@@ -54,14 +54,23 @@ void ControlCenter::testByLocation(std::string locationName)
 
 }
 
+void ControlCenter::test(std::string locationName, std::string sensorType)
+{
+
+    auto sensors = getAllSensorsInSpace(locationName);
+
+    for(auto& s: sensors){
+        //check if its a sensor
+        if(s->getSensorType() == sensorType){
+            s->trigger();
+        }
+    }
+
+}
+
 void ControlCenter::getOverview(std::string comp)
 {
-/*
- *
- *FIX THE IF ELSE STRUCTURE TO DETERMINE THE COMPARITOR!!!
- *
- *
- */
+
     std::vector<std::shared_ptr<Sensor>> sensors = getAllSensors();
     if(comp == "vendor"){
         std::sort(sensors.begin(), sensors.end(), [](auto & s1, auto & s2)
@@ -78,7 +87,7 @@ void ControlCenter::getOverview(std::string comp)
 
 
 
-    //in the next part we create a structured print of all sensors
+
     std::cout << "Overview of sensors:" << std::endl << std::endl;
 
 
