@@ -28,6 +28,7 @@ public:
     std::string getEndTime() const;
     void setTimeDependent(bool state) const;
     bool isTimeDependent() const;
+    bool isTimeWithinBounds() const;
 
     void setStartTime(const std::string &newStartTime);
     void setEndTime(const std::string &newEndTime);
