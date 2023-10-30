@@ -29,7 +29,6 @@ void Location::trigger() const
 
     }
 
-    return false;
 }
 
 void Location::addSpace(std::shared_ptr<Space> space)
