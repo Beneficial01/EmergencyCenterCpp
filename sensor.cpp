@@ -42,14 +42,11 @@ bool Sensor::isTimeWithinBounds() const
 
 void Sensor::trigger() const
 {
-
-    for(auto& service : services){
-        if(this->getActivated()){
+    for (auto& service : services) {
+        if (this->getActivated() && (!isTimeDependent() || isTimeWithinBounds())) {
             service->update(this->getSensorType(), this->getSensorId());
         }
-
     }
-
 }
 
 std::string Sensor::toString() const
