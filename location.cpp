@@ -15,7 +15,7 @@ std::string Location::toString() const
     return "this is my toString";
 }
 
-bool Location::trigger() const
+void Location::trigger() const
 {
     if(!subSpaces.empty()){
 

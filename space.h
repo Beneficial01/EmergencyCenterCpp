@@ -11,7 +11,7 @@ public:
     Space() = default;
     virtual ~Space() = default;
     virtual std::string toString() const = 0;
-    virtual bool trigger() const = 0;
+    virtual void trigger() const = 0;
 };
 
 

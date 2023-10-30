@@ -16,7 +16,7 @@ public:
      * @brief Triggers all Spaces found within this space
      * @return bool to indicate success
      */
-    bool trigger() const override;
+    void trigger() const override;
     void addSpace(std::shared_ptr<Space> space);
     void setSpaceName(const std::string &newSpaceName);
 

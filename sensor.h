@@ -14,7 +14,7 @@ public:
     virtual ~Sensor() = default;
     virtual void activate();
     virtual void deactivate();
-    virtual bool trigger() const override;
+    virtual void trigger() const override;
     virtual std::string toString() const override;
     virtual std::string getSensorType() const = 0;
 

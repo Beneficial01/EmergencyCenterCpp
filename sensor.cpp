@@ -17,13 +17,15 @@ void Sensor::deactivate()
 
 // remember to refactor this in the space interface and everywhere else
 
-bool Sensor::trigger() const
+void Sensor::trigger() const
 {
 
     for(auto& service : services){
-        service->update(this->getSensorType(), this->getSensorId());
+        if(this->getActivated()){
+            service->update(this->getSensorType(), this->getSensorId());
+        }
+
     }
-    return true;
 
 }
 
