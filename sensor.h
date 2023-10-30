@@ -26,6 +26,8 @@ public:
     bool getTimerState() const;
     std::string getStartTime() const;
     std::string getEndTime() const;
+    void setTimeDependent(bool state) const;
+    bool isTimeDependent() const;
 
     void setStartTime(const std::string &newStartTime);
     void setEndTime(const std::string &newEndTime);
@@ -37,7 +39,7 @@ private:
     bool activated {false};
     std::string startTime;
     std::string endTime;
-    bool timerState;
+    bool isTimeDependent;
     //std::vector<Service> services;
     std::vector<std::shared_ptr<Service>> services;
 
