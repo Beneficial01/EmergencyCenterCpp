@@ -77,21 +77,4 @@ private:
 };
 
 
-
-//all sensors ordered by vendor
-//all sensors by ID
-//all sensors by location name
-
-
-//class VendorAlphabetical
-//{
-//public:
-//    bool operator()(std::unique_ptr<Sensor> & s1, std::unique_ptr<Sensor> & s2)
-//    {
-//        return (s1->getVendorName()) > (s2->getVendorName());
-//    }
-//};
-
-
-
 #endif // CONTROLCENTER_H
