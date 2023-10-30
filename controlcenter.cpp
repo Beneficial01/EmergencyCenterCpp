@@ -29,6 +29,13 @@ void ControlCenter::addSpace(std::shared_ptr<Space> space)
 
 }
 
+ControlCenter &ControlCenter::operator++()
+{
+        modify(true); // Activate all sensors
+        return *this;
+
+}
+
 void ControlCenter::test()
 {
     for(auto& space: spaces){

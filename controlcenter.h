@@ -31,7 +31,6 @@ public:
     void activate(std::string spaceName);
     void activate(std::string spaceName, std::string sensorType);
     void activateBySensorType(std::string sensorType);
-
     void deactivate();
     void deactivate(std::string spaceName);
     void deactivate(std::string spaceName, std::string sensorType);
@@ -51,7 +50,7 @@ public:
     std::vector<std::shared_ptr<Location>> getAllLocations();
 
     //overload ++ to activate all sensors
-
+    ControlCenter& operator++();
 
 
 
