@@ -42,12 +42,15 @@ public:
 
 
 
-    ///OVERVIEW -> use function objects
+    /**
+     * @brief prints a overview of all sensors in the system
+     * @param comp to indicate which comparator is used:
+     *          - comp = "vendor" -> orders alphabetically by vendor
+     *          - comp = "id" -> orders by sensor id
+     *          - comp = "location" -> orders by location alphabetically
+     *          - comp = "*" -> no ordering applied
+     */
     void getOverview(std::string comp);
-
-    //all sensors ordered by vendor
-    //all sensors by ID
-    //all sensors by location name
 
 
     void addSpace(std::shared_ptr<Space> space);
