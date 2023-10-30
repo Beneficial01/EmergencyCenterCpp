@@ -17,11 +17,18 @@ void Sensor::deactivate()
 
 bool Sensor::isTimeWithinBounds() const
 {
+    // Get current time
     time_t rawtime;
     struct tm * timeinfo;
     time (&rawtime);
     timeinfo = localtime (&rawtime);
 
+    // Convert all to minutes
+    int currentTimeMinutes = timeinfo.tm_hour * 60 + timeinfo.tm_min;
+    int startTimeMinutes = startTime.tm_hour * 60 + startTime.tm_min;
+    int endTimeMinutes = endTime.tm_hour * 60 + endTime.tm_min;
+
+    return (currentTimeMinutes >= startTimeMinutes) && (currentTimeMinutes <= endTimeMinutes);
 }
 
 
