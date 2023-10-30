@@ -29,6 +29,13 @@ void ControlCenter::addSpace(std::shared_ptr<Space> space)
 
 }
 
+ControlCenter &ControlCenter::operator++()
+{
+        modify(true); // Activate all sensors
+        return *this;
+
+}
+
 void ControlCenter::test()
 {
     for(auto& space: spaces){
@@ -95,25 +102,42 @@ void ControlCenter::getOverview(std::string comp)
 
 void ControlCenter::activate()
 {
-
+    modify(true);
 }
 
 void ControlCenter::activate(std::string spaceName)
 {
-
-    auto sensorsInSpace = getAllSensorsInSpace(spaceName);
-    for(auto& sensor: sensorsInSpace){
-        sensor->activate();
-    }
+    modify(spaceName, true);
 }
 
 void ControlCenter::activate(std::string spaceName, std::string sensorType)
 {
-    auto sensorsInSpace = getAllSensorsInSpace(spaceName);
-    for(auto& sensor: sensorsInSpace){
-        if(sensor->getSensorType()==sensorType)
-        sensor->activate();
-    }
+    modify(spaceName, sensorType, true);
+}
+
+void ControlCenter::activateBySensorType(std::string sensorType)
+{
+    modifyBySensorType(sensorType, true);
+}
+
+void ControlCenter::deactivate()
+{
+    modify(false);
+}
+
+void ControlCenter::deactivate(std::string spaceName)
+{
+    modify(spaceName, false);
+}
+
+void ControlCenter::deactivate(std::string spaceName, std::string sensorType)
+{
+    modify(spaceName, sensorType, false);
+}
+
+void ControlCenter::deactivateBySensorType(std::string sensorType)
+{
+    modifyBySensorType(sensorType, false);
 }
 
 //void ControlCenter::testBySensorType(std::string sensorType)
@@ -153,6 +177,41 @@ std::vector<std::shared_ptr<Sensor>> ControlCenter::getAllSensorsInSpace(std::st
         }
     }
     return sensorsInSpace;
+}
+
+void ControlCenter::modify(bool b)
+{
+    auto allSensors = getAllSensors();
+    for(auto& sensor: allSensors){
+        b ? sensor->activate():sensor->deactivate();
+    }
+}
+
+void ControlCenter::modify(std::string spaceName, bool b)
+{
+    auto sensorsInSpace = getAllSensorsInSpace(spaceName);
+    for(auto& sensor: sensorsInSpace){
+        b ? sensor->activate():sensor->deactivate();
+    }
+}
+
+void ControlCenter::modify(std::string spaceName, std::string sensorType, bool b)
+{
+    auto sensorsInSpace = getAllSensorsInSpace(spaceName);
+    for(auto& sensor: sensorsInSpace){
+        if(sensor->getSensorType()==sensorType)
+        b ? sensor->activate():sensor->deactivate();
+    }
+}
+
+void ControlCenter::modifyBySensorType(std::string sensorType, bool b)
+{
+    auto allSensors = getAllSensors();
+    for(auto& sensor: allSensors){
+        if(sensor->getSensorType()== sensorType){
+            b ? sensor->activate():sensor->deactivate();
+        }
+    }
 }
 
 

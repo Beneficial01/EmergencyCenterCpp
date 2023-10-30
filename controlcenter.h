@@ -27,19 +27,14 @@ public:
     //get all locations in string form -> structure print as tree
 
     ///ACTIVATION:
-    //void activate(Space& space);
     void activate();
     void activate(std::string spaceName);
     void activate(std::string spaceName, std::string sensorType);
-    //activate(class type)
-    //void deactivate(Space& space);
-    //deactivate() -> all
-    //deactivate(string SpaceName)
-    //deactivate(string SpaceName, class type)
-
-    //PRIVATE FUNCTION WITH BOOL TO KNOW AVTIVATE OR DEACTIVATE
-    //get all sensors from location from its name
-
+    void activateBySensorType(std::string sensorType);
+    void deactivate();
+    void deactivate(std::string spaceName);
+    void deactivate(std::string spaceName, std::string sensorType);
+    void deactivateBySensorType(std::string sensorType);
 
 
     /**
@@ -58,7 +53,7 @@ public:
     std::vector<std::shared_ptr<Location>> getAllLocations();
 
     //overload ++ to activate all sensors
-
+    ControlCenter& operator++();
 
 
 
@@ -69,6 +64,15 @@ private:
     std::vector<std::shared_ptr<Location>> allLocations {};
     std::vector<std::shared_ptr<Sensor>> getAllSensors();
     std::vector<std::shared_ptr<Sensor>> getAllSensorsInSpace(std::string spaceName);
+
+
+
+    void modify(bool b);
+    void modify(std::string spaceName, bool b);
+    void modify(std::string spaceName, std::string sensorType, bool b );
+    void modifyBySensorType(std::string sensorType, bool b);
+
+
 };
 
 
