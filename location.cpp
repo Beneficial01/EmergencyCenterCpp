@@ -9,16 +9,13 @@ Location::Location()
 
 std::string Location::toString() const
 {
-    std::cout << "This is a temp message, name is: " << spaceName << std::endl;
-
-    //  #TODO: implement to string function to loop through all locations
-    return "this is my toString";
+    return "This location is: " + spaceName;
 }
 
-bool Location::trigger() const
+void Location::trigger() const
 {
     if(!subSpaces.empty()){
-
+        //trigger all subspaces in this location
         for (const std::shared_ptr<Space>& space: subSpaces){
             (*space).trigger();
         }
@@ -29,7 +26,6 @@ bool Location::trigger() const
 
     }
 
-    return false;
 }
 
 void Location::addSpace(std::shared_ptr<Space> space)

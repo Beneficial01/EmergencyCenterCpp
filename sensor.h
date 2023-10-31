@@ -5,38 +5,63 @@
 #include "space.h"
 #include <vector>
 #include <memory>
+#include <ctime>
 #include "location.h"
 
-class EMERGENCYCENTRELIB_EXPORT Sensor: Space
+
+/**
+ * @class Sensor
+ * @brief The Sensor class is an abstract base class for specific sensors in the Emergency Centre Library.
+ * The Sensor class implements the Space interface and its methods
+ * @see Space
+ */
+class EMERGENCYCENTRELIB_EXPORT Sensor: public Space
 {
 public:
-    //Sensor() = default;
     virtual ~Sensor() = default;
     virtual void activate();
     virtual void deactivate();
-    virtual bool trigger() const override;
-    virtual std::string toString() const override;
-    virtual std::string getSensorType() const = 0;
-
-//    void addService(Service & service );
+    /**
+     * @brief trigger method is a method of the space interface
+     * It is used to call the update method for the service(s) that are attached to a sensor
+     */
+    virtual void trigger() const override;
     void addService(std::shared_ptr<Service> service );
+
+    bool isTimeDependent() const;
+    bool isTimeWithinBounds() const;
+    /**
+     * @brief toString method gives an overview of the sensor details
+     * @return std::string with sensor type, location, id
+     * it also gives time details if the sensor is time dependent
+     * else, it mentions that the sensor is time-independent
+     */
+    virtual std::string toString() const override;
+
+    friend std::ostream & operator<<(std::ostream & os, const Sensor & s);
+    Sensor& operator++();
+    Sensor& operator--();
+
     int getSensorId() const;
     std::string getVendorName() const;
     bool getActivated() const;
-    bool getTimerState() const;
     std::string getStartTime() const;
     std::string getEndTime() const;
+    std::string getLocation() const;
+    virtual std::string getSensorType() const = 0;
 
-    void setStartTime(const std::string &newStartTime);
-    void setEndTime(const std::string &newEndTime);
+    void setTimeDependent(bool state);
+    void setStartTime(const int hour, const int min);
+    void setEndTime(const int hour, const int min);
+
+
 
 private:
-    //attributes
+
     bool activated {false};
-    std::string startTime;
-    std::string endTime;
-    bool timerState;
-    //std::vector<Service> services;
+    struct tm startTime;
+    struct tm endTime;
+    bool timeDependent {false};
     std::vector<std::shared_ptr<Service>> services;
 
 protected:

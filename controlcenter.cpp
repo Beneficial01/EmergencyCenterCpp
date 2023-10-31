@@ -29,6 +29,13 @@ void ControlCenter::addSpace(std::shared_ptr<Space> space)
 
 }
 
+ControlCenter &ControlCenter::operator++()
+{
+        modify(true); // Activate all sensors
+        return *this;
+
+}
+
 void ControlCenter::test()
 {
     for(auto& space: spaces){
@@ -47,6 +54,108 @@ void ControlCenter::testByLocation(std::string locationName)
 
 }
 
+void ControlCenter::testBySensorType(std::string sensorType)
+{
+    for(auto& location: allLocations){
+        std::vector<std::shared_ptr<Space>> subSpaces = location->getSubSpaces();
+
+        for(auto& space: subSpaces){
+            if(std::dynamic_pointer_cast<Sensor>(space) != nullptr){
+                auto s = std::dynamic_pointer_cast<Sensor>(space);
+                if(s->getSensorType() == sensorType){
+                    s->trigger();
+                }
+            }
+        }
+
+    }
+}
+
+void ControlCenter::test(std::string locationName, std::string sensorType)
+{
+
+    auto sensors = getAllSensorsInSpace(locationName);
+
+    for(auto& s: sensors){
+        //check if its a sensor
+        if(s->getSensorType() == sensorType){
+            s->trigger();
+        }
+    }
+
+}
+
+void ControlCenter::getOverview(std::string comp)
+{
+
+    std::vector<std::shared_ptr<Sensor>> sensors = getAllSensors();
+    if(comp == "vendor"){
+        std::sort(sensors.begin(), sensors.end(), [](auto & s1, auto & s2)
+                  {return s1->getVendorName() < s2->getVendorName();});
+    }
+    else if(comp == "id"){
+        std::sort(sensors.begin(), sensors.end(), [](auto & s1, auto & s2)
+                  {return s1->getSensorId() < s2->getSensorId();});
+    }
+    else if(comp == "location"){
+        std::sort(sensors.begin(), sensors.end(), [](auto & s1, auto & s2)
+                  {return s1->getLocation() < s2->getLocation();});
+    }
+
+
+
+
+    std::cout << "Overview of sensors:" << std::endl << std::endl;
+
+
+    for(auto&s: sensors){
+        std::cout << (*s) << std::endl;
+        std::cout << std::endl;
+    }
+
+
+}
+
+void ControlCenter::activate()
+{
+    modify(true);
+}
+
+void ControlCenter::activate(std::string spaceName)
+{
+    modify(spaceName, true);
+}
+
+void ControlCenter::activate(std::string spaceName, std::string sensorType)
+{
+    modify(spaceName, sensorType, true);
+}
+
+void ControlCenter::activateBySensorType(std::string sensorType)
+{
+    modifyBySensorType(sensorType, true);
+}
+
+void ControlCenter::deactivate()
+{
+    modify(false);
+}
+
+void ControlCenter::deactivate(std::string spaceName)
+{
+    modify(spaceName, false);
+}
+
+void ControlCenter::deactivate(std::string spaceName, std::string sensorType)
+{
+    modify(spaceName, sensorType, false);
+}
+
+void ControlCenter::deactivateBySensorType(std::string sensorType)
+{
+    modifyBySensorType(sensorType, false);
+}
+
 //void ControlCenter::testBySensorType(std::string sensorType)
 //{
 //    for(auto& location: allLocations){
@@ -57,17 +166,95 @@ void ControlCenter::testByLocation(std::string locationName)
 //}
 
 
+std::vector<std::shared_ptr<Sensor>> ControlCenter::getAllSensorsInSpace(std::string spaceName) {
 
-//JUST KEEP THIS FUNCTION AND CALL IT EACH TIME WE ADD A NEW SPACE TO OUR SYSTEM!!!!
+    /*
+     * first find the location matching the spaceName
+     * get all the subspaces of the spaceName with recursiveUnroll
+     * for each of these spaces, go through list of sensors
+     * for each sensor, add to list
+     */
+
+    std::vector<std::shared_ptr<Sensor>> sensorsInSpace;
+
+    for(auto& location: allLocations)
+    {
+        if (location->getSpaceName() == spaceName) {
+            auto allSubspaces = recursiveUnroll(*location);
+
+            for (const auto& subspace : allSubspaces) {
+                auto findingSubspace = subspace->getSubSpaces();
+                for (const auto& maybeSensor : findingSubspace) {
+                    if (std::dynamic_pointer_cast<Sensor>(maybeSensor) != nullptr) {
+                        sensorsInSpace.push_back(std::dynamic_pointer_cast<Sensor>(maybeSensor));
+                    }
+                }
+            }
+
+            auto internalSubspaces = location->getSubSpaces();
+            for(auto& is: internalSubspaces){
+                if (std::dynamic_pointer_cast<Sensor>(is) != nullptr) {
+                    sensorsInSpace.push_back(std::dynamic_pointer_cast<Sensor>(is));
+                }
+            }
+        }
+    }
+    return sensorsInSpace;
+}
+
+void ControlCenter::modify(bool b)
+{
+    auto allSensors = getAllSensors();
+    for(auto& sensor: allSensors){
+        b ? ++(*sensor):--(*sensor);
+    }
+}
+
+void ControlCenter::modify(std::string spaceName, bool b)
+{
+    auto sensorsInSpace = getAllSensorsInSpace(spaceName);
+    for(auto& sensor: sensorsInSpace){
+        b ? ++(*sensor):--(*sensor);
+    }
+}
+
+void ControlCenter::modify(std::string spaceName, std::string sensorType, bool b)
+{
+    auto sensorsInSpace = getAllSensorsInSpace(spaceName);
+    for(auto& sensor: sensorsInSpace){
+        if(sensor->getSensorType()==sensorType){
+            b ? ++(*sensor):--(*sensor);
+        }
+    }
+}
+
+void ControlCenter::modifyBySensorType(std::string sensorType, bool b)
+{
+    auto allSensors = getAllSensors();
+    for(auto& sensor: allSensors){
+        if(sensor->getSensorType()== sensorType){
+            b ? ++(*sensor):--(*sensor);
+        }
+    }
+}
+
+
+/**
+ * @brief This function recursively goes through the tree of subspaces and returns the locations as a linear list
+ * @param space
+ */
 std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location& space)
 {
+    //we get a list of all direct subspaces of the space
     std::vector<std::shared_ptr<Space>> subspaces;
     subspaces = space.getSubSpaces();
 
+    //one list to return all locations, and a second to store the return of the recursive call
     std::vector<std::shared_ptr<Location>> locations;
     std::vector<std::shared_ptr<Location>> locations2;
 
 
+    //the loop iterates recursively through the tree of subspaces for each direct subspace
     for(auto& subspace: subspaces){
 
 
@@ -76,7 +263,9 @@ std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location&
             locations.push_back(loc);
             locations2.clear();
             if((*loc).getSubSpaces().size() > 0){
+                //for each subspace that is a location, we call this function again
                locations2 = recursiveUnroll(*loc);
+                //we then insert the entire list of subspaces into our outer list
                locations.insert(locations.end(), locations2.begin(), locations2.end());
             }
 
@@ -89,7 +278,26 @@ std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location&
 
 }
 
+/**
+ * @brief   ControlCenter::getAllSensors generates a
+ *          list of all the sensors in the entire system
+ */
+std::vector<std::shared_ptr<Sensor> > ControlCenter::getAllSensors()
+{
+    std::vector<std::shared_ptr<Sensor>> sensors;
+    std::vector<std::shared_ptr<Space>> subSpaces;
 
+    for(auto& l: allLocations){
+        subSpaces = l->getSubSpaces();
+        for(auto& s: subSpaces){
+            if(std::dynamic_pointer_cast<Sensor>(s) != nullptr){
+               sensors.push_back(std::dynamic_pointer_cast<Sensor>(s));
+            }
+        }
+    }
+
+    return sensors;
+}
 
 
 
