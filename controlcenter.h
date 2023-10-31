@@ -11,23 +11,24 @@
 #include "location.h"
 #include "EmergencyCentreLib_global.h"
 
+/**
+ * @brief The ControlCenter class used as a central control point for the security system
+ */
 class EMERGENCYCENTRELIB_EXPORT ControlCenter
 {
 public:
     ControlCenter();
     ControlCenter(std::string n);
-    //second constructor with name
 
-    /// TESTING:
+
+    /// FUNCTIONS TO TEST SENSORS/LOCATIONS:
     void test(Space& space);//test all in space
     void test();//test all
     void testByLocation(std::string locationName);//test by location name
     void testBySensorType(std::string sensorType);
     void test(std::string locationName, std::string sensorType);
 
-    //get all locations in string form -> structure print as tree
-
-    ///ACTIVATION:
+    ///FUNCTIONS TO (DE)ACTIVATE SENSORS/LOCATIONS:
     void activate();
     void activate(std::string spaceName);
     void activate(std::string spaceName, std::string sensorType);
@@ -38,6 +39,7 @@ public:
     void deactivateBySensorType(std::string sensorType);
 
 
+    ///OTHER FUNCTIONS:
     /**
      * @brief prints a overview of all sensors in the system
      * @param comp to indicate which comparator is used:
@@ -50,12 +52,9 @@ public:
 
 
     void addSpace(std::shared_ptr<Space> space);
-//    std::vector<std::shared_ptr<Sensor>> getAllSensors();
     std::vector<std::shared_ptr<Location>> getAllLocations();
 
-    //overload ++ to activate all sensors
     ControlCenter& operator++();
-
 
     std::vector<std::shared_ptr<Sensor>> getAllSensorsInSpace(std::string spaceName);
 

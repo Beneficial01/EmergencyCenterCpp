@@ -239,16 +239,22 @@ void ControlCenter::modifyBySensorType(std::string sensorType, bool b)
 }
 
 
-//JUST KEEP THIS FUNCTION AND CALL IT EACH TIME WE ADD A NEW SPACE TO OUR SYSTEM!!!!
+/**
+ * @brief This function recursively goes through the tree of subspaces and returns the locations as a linear list
+ * @param space
+ */
 std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location& space)
 {
+    //we get a list of all direct subspaces of the space
     std::vector<std::shared_ptr<Space>> subspaces;
     subspaces = space.getSubSpaces();
 
+    //one list to return all locations, and a second to store the return of the recursive call
     std::vector<std::shared_ptr<Location>> locations;
     std::vector<std::shared_ptr<Location>> locations2;
 
 
+    //the loop iterates recursively through the tree of subspaces for each direct subspace
     for(auto& subspace: subspaces){
 
 
@@ -257,7 +263,9 @@ std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location&
             locations.push_back(loc);
             locations2.clear();
             if((*loc).getSubSpaces().size() > 0){
+                //for each subspace that is a location, we call this function again
                locations2 = recursiveUnroll(*loc);
+                //we then insert the entire list of subspaces into our outer list
                locations.insert(locations.end(), locations2.begin(), locations2.end());
             }
 
@@ -270,6 +278,10 @@ std::vector<std::shared_ptr<Location> > ControlCenter::recursiveUnroll(Location&
 
 }
 
+/**
+ * @brief   ControlCenter::getAllSensors generates a
+ *          list of all the sensors in the entire system
+ */
 std::vector<std::shared_ptr<Sensor> > ControlCenter::getAllSensors()
 {
     std::vector<std::shared_ptr<Sensor>> sensors;
