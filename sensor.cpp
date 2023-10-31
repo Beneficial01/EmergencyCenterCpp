@@ -70,6 +70,19 @@ std::string Sensor::toString() const
     return ret;
 }
 
+Sensor &Sensor::operator++()
+{
+    activated = true;
+    return *this;
+}
+
+Sensor &Sensor::operator--()
+{
+    activated = false;
+    return *this;
+}
+
+
 std::ostream &operator<<(std::ostream &os, const Sensor &s)
 {
     os << "Sensor Overview:" <<std::endl << s.toString() << std::endl;
