@@ -19,7 +19,8 @@ public:
 
     virtual std::string toString() const override;
     friend std::ostream & operator<<(std::ostream & os, const Sensor & s);
-
+    Sensor& operator++();
+    Sensor& operator--();
     virtual std::string getSensorType() const = 0;
 
 //    void addService(Service & service );
