@@ -1,10 +1,6 @@
 #include "sensor.h"
 #include <iostream>
 
-//Sensor::Sensor() {
-
-//}
-
 
 void Sensor::activate()
 {
@@ -40,7 +36,6 @@ bool Sensor::isTimeWithinBounds() const
 }
 
 
-// remember to refactor this in the space interface and everywhere else
 
 void Sensor::trigger() const
 {
