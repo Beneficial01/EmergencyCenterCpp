@@ -20,17 +20,23 @@ bool Sensor::isTimeWithinBounds() const
 {
     // Get current time
     time_t rawtime;
-    struct tm * timeinfo;
-    time (&rawtime);
-    timeinfo = localtime (&rawtime);
+    struct tm *timeinfo;
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
 
-    std::cout << "current time is " << (*timeinfo).tm_hour << ":" << (*timeinfo).tm_min << std::endl;
+    std::cout << "current time is " << timeinfo->tm_hour << ":" << timeinfo->tm_min << std::endl;
 
     // Convert all to minutes
-    int currentTimeMinutes = (*timeinfo).tm_hour * 60 + (*timeinfo).tm_min;
+    int currentTimeMinutes = timeinfo->tm_hour * 60 + timeinfo->tm_min;
     int startTimeMinutes = startTime.tm_hour * 60 + startTime.tm_min;
     int endTimeMinutes = endTime.tm_hour * 60 + endTime.tm_min;
-    return (currentTimeMinutes >= startTimeMinutes) && (currentTimeMinutes <= endTimeMinutes);
+
+    if (endTimeMinutes < startTimeMinutes) {
+        // The end time is on the next day, handle the wrap-around
+        return (currentTimeMinutes >= startTimeMinutes) || (currentTimeMinutes <= endTimeMinutes);
+    } else {
+        return (currentTimeMinutes >= startTimeMinutes) && (currentTimeMinutes <= endTimeMinutes);
+    }
 }
 
 
