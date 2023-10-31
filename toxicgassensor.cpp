@@ -7,8 +7,6 @@ ToxicGasSensor::ToxicGasSensor(std::string vendor, int gas, std::shared_ptr<Loca
     vendorName = vendor;
     gasAmount = gas;
     location = loc;
-    std::cout << "Gas Sensor constructor 1 called with Vendor  " << vendorName <<std::endl;
-    std::cout << "in : " << (*location).toString() << std::endl;
 }
 
 std::string ToxicGasSensor::getSensorType() const

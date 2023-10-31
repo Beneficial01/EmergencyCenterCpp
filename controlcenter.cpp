@@ -122,7 +122,6 @@ void ControlCenter::getOverview(std::string comp)
         std::cout << std::endl;
     }
 
-    std::cout << "test" << std::endl;
 
 }
 

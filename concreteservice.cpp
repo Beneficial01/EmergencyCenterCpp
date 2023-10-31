@@ -10,7 +10,7 @@
 
 ConcreteService::ConcreteService()
 {
-    std::cout << "Creating a concrete service" << std::endl;
+
 }
 
 // IF YOU DON'T ALREADY KNOW, include this std::string locName
