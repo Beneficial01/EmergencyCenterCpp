@@ -17,7 +17,6 @@ public:
     std::string toString() const override;
     /**
      * @brief Triggers all Spaces found within this space
-     * @return bool to indicate success
      */
     void trigger() const override;
 
