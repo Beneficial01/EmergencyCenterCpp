@@ -216,7 +216,7 @@ void ControlCenter::modify(bool b)
 {
     auto allSensors = getAllSensors();
     for(auto& sensor: allSensors){
-        b ? sensor->activate():sensor->deactivate();
+        b ? ++(*sensor):--(*sensor);
     }
 }
 
@@ -224,7 +224,7 @@ void ControlCenter::modify(std::string spaceName, bool b)
 {
     auto sensorsInSpace = getAllSensorsInSpace(spaceName);
     for(auto& sensor: sensorsInSpace){
-        b ? sensor->activate():sensor->deactivate();
+        b ? ++(*sensor):--(*sensor);
     }
 }
 
@@ -232,8 +232,9 @@ void ControlCenter::modify(std::string spaceName, std::string sensorType, bool b
 {
     auto sensorsInSpace = getAllSensorsInSpace(spaceName);
     for(auto& sensor: sensorsInSpace){
-        if(sensor->getSensorType()==sensorType)
-        b ? sensor->activate():sensor->deactivate();
+        if(sensor->getSensorType()==sensorType){
+            b ? ++(*sensor):--(*sensor);
+        }
     }
 }
 
@@ -242,7 +243,7 @@ void ControlCenter::modifyBySensorType(std::string sensorType, bool b)
     auto allSensors = getAllSensors();
     for(auto& sensor: allSensors){
         if(sensor->getSensorType()== sensorType){
-            b ? sensor->activate():sensor->deactivate();
+            b ? ++(*sensor):--(*sensor);
         }
     }
 }
