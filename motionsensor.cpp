@@ -14,3 +14,8 @@ std::string MotionSensor::getSensorType() const
 {
     return "Motion";
 }
+
+void MotionSensor::setDistance(int newDistance)
+{
+    distance = newDistance;
+}

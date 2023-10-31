@@ -10,5 +10,10 @@ public:
     MotionSensor(std::string vendor, std::shared_ptr<Location> loc);
     std::string getSensorType() const override;
 
+    void setDistance(int newDistance);
+
+private:
+    int distance {};
+
 };
 #endif // MOTIONSENSOR_H
