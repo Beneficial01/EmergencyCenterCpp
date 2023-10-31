@@ -40,7 +40,7 @@ void Sensor::trigger() const
 {
     for (auto& service : services) {
         if (this->getActivated() && (!isTimeDependent() || isTimeWithinBounds())) {
-            service->update(this->getSensorType(), this->getSensorId());
+            service->update(this->getSensorType(), location->getSpaceName());
         }
     }
 }

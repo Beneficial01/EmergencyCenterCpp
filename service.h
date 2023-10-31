@@ -10,7 +10,7 @@ public:
     Service() = default;
     virtual ~Service() = default;
     //std::string locName INCLUDE THIS LATER ON AFTER GETTING CHANGES FROM LOCATION
-    virtual void update(std::string sensorType, int id) const = 0;
+    virtual void update(std::string sensorType, std::string location) const = 0;
 
 };
 

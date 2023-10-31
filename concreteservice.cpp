@@ -14,10 +14,11 @@ ConcreteService::ConcreteService()
 }
 
 // IF YOU DON'T ALREADY KNOW, include this std::string locName
-void ConcreteService::update(std::string sensorType, int id) const
+void ConcreteService::update(std::string sensorType, std::string location) const
 {
-    std::cout << text << std::endl;
-    std::cout << "from " << sensorType << "Sensor, of id :"  << id << std::endl;
+
+    std::cout <<"\"" << text << "\"";
+    std::cout << " from " << sensorType << "Sensor in "  << location << std::endl;
 }
 
 void ConcreteService::setText(const std::string &newText)
