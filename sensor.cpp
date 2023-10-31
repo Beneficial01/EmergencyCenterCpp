@@ -47,7 +47,27 @@ void Sensor::trigger() const
 
 std::string Sensor::toString() const
 {
-    return "Sensor Type: " + getSensorType() + ", Vendor: " + vendorName;
+    std::string ret;
+    ret = "Sensor Type: " + getSensorType() + "\n" + "Vendor: " + vendorName + "\n"
+          + "Location: " + location->getSpaceName() + "\n"
+          + "Sensor ID: " + std::to_string(sensorId);
+    if(isTimeDependent()){
+        ret += "\n";
+        ret += "Activate start time: " + getStartTime();
+        ret += "\n";
+        ret += "Activate end time: " + getEndTime();
+    }
+    else{
+        ret += "\nSensor activation is time independent";
+    }
+
+    return ret;
+}
+
+std::ostream &operator<<(std::ostream &os, const Sensor &s)
+{
+    os << "Sensor Overview:" <<std::endl << s.toString() << std::endl;
+    return os;
 }
 
 void Sensor::addService(std::shared_ptr<Service> service){

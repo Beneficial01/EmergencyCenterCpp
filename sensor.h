@@ -16,7 +16,10 @@ public:
     virtual void activate();
     virtual void deactivate();
     virtual void trigger() const override;
+
     virtual std::string toString() const override;
+    friend std::ostream & operator<<(std::ostream & os, const Sensor & s);
+
     virtual std::string getSensorType() const = 0;
 
 //    void addService(Service & service );
