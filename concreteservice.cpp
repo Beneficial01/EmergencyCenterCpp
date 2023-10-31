@@ -2,18 +2,11 @@
 #include <iostream>
 
 
-
-//void ConcreteService::update() const
-//{
-//    std::cout << text << std::endl;
-//}
-
 ConcreteService::ConcreteService()
 {
 
 }
 
-// IF YOU DON'T ALREADY KNOW, include this std::string locName
 void ConcreteService::update(std::string sensorType, std::string location) const
 {
 
