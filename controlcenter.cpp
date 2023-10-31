@@ -109,16 +109,6 @@ void ControlCenter::getOverview(std::string comp)
 
 
     for(auto&s: sensors){
-//        std::cout << "Sensor ID: " << s->getSensorId() << std::endl;
-//        std::cout << "Vendor name: " << s->getVendorName() << std::endl;
-//        std::cout << "Sensor location: " << s->getLocation() << std::endl;
-//        if(s->isTimeDependent()){
-//            std::cout << "Activate start time: " << s->getStartTime() << std::endl;
-//            std::cout << "Activate end time: " << s->getEndTime() << std::endl;
-//        }
-//        else{
-//            std::cout << "Sensor activation is time independent"  << std::endl;
-//        }
         std::cout << (*s) << std::endl;
         std::cout << std::endl;
     }
