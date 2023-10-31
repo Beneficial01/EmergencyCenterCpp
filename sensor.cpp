@@ -20,7 +20,6 @@ bool Sensor::isTimeWithinBounds() const
     time(&rawtime);
     timeinfo = localtime(&rawtime);
 
-    std::cout << "current time is " << timeinfo->tm_hour << ":" << timeinfo->tm_min << std::endl;
 
     // Convert all to minutes
     int currentTimeMinutes = timeinfo->tm_hour * 60 + timeinfo->tm_min;
